@@ -2,6 +2,7 @@
 import time
 from threading import Thread
 
+score = 0
 # Engine Parts
 class Characters(object):
     def name(self):
@@ -23,6 +24,11 @@ class Characters(object):
             print('You chose Don Jonas!')
             Introduction.expo('Don', 'He like to fuck shit up')
 
+class Game(object):
+    def play(self):
+#Insert random room selection here
+    def death(self):
+        print(f"Nice, you scored {score}")
 # Intro
 class Introduction(object):
     def __init__(self):
@@ -38,7 +44,7 @@ class Introduction(object):
         print('\n Have you played before? \n Y/N')
         tut = input('> ')
         if tut == 'Y':
-            Engine.running('')
+            Game.play('')
         else:
             Introduction.tutorial('')
     def tutorial(self):
@@ -55,7 +61,7 @@ class Introduction(object):
         def train():
                     time.sleep(5)
                     if punch == 'punch':
-                        print("The test dummys head falls off")
+                        print("The test dummy's head falls off")
                         print("Nice work!")
                         input('> Press enter to end training, and start the game')
                     else:
@@ -64,4 +70,42 @@ class Introduction(object):
         Thread(target = train).start()
         punch = input("Try it: ")
 
+
+
+# Rooms
+class Room(object):
+    def points(self):
+        score = score + 1
+
+class Stairs(Room):
+    print("You see a flight of stairs and begin to run up them")
+    print("A large man in standing in your way, but there seems to be space to pass him")
+    print("Dodge him!")
+    def step():
+                time.sleep(5)
+                if dodge == 'dodge':
+                    print("You jump to the side and pass him!")
+                    print("Nice!")
+                else:
+                    print ("He catches you, and snaps you neck")
+                    Game.death('')
+    Thread(target = step).start()
+    dodge = input("Go: ")
+    print("Now kick him down the stairs!")
+    def steps():
+                time.sleep(5)
+                if kick == 'kick':
+                    print("He slides face first down the stairs")
+                    print("That's gotta hurt!")
+                    print("You reach the top of the stairs")
+                else:
+                    print ("He catches you, and snaps you neck")
+                    Game.death('')
+    Thread(target = steps).start()
+    kick = input("Go: ")
+#Insert next room here
+
+
+
+# Stuff for running
 Introduction.startup('')
