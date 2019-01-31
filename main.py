@@ -7,22 +7,22 @@ score = 0
 class Characters(object):
     def name(self):
         print('1. Morrissey Wayout')
-        print('2. Calven Helviett')
-        print('3. Arthur J. Tullis')
+        print('2. Shawn Rover')
+        print('3. Roslin Ringlead')
         print('4. Don Jonas')
         who = input('> ')
         if who == '1':
             print('You chose Morrissey Wayout!')
-            Introduction.expo('Morrissey', 'He like to fuck shit up')
+            Introduction.expo('Morrissey', 'Morrisey loved to make music. His music was always "Deep" and "insightful", at least to him. So much so that he would bash other musicians for not understanding his shitty lyrics. One day, he decided to play his music on a homemade radio tower over all public radio stations. It wasnt long before he was tracked down by the local DJs, and chased into an abandoned record warehouse...')
         elif who == '2':
-            print('You chose Calven Helviett!')
-            Introduction.expo('Calven', 'He like to fuck shit up')
+            print('You chose Shawn Rover!')
+            Introduction.expo('Shawn', "Shawn thinks he is a wizard. He's always experimenting with 'magic'. Recently, he's been kidnapping people's cats in an attempt to turn them into his new human friends. The neighborhood cat ladies aren't very happy with his recent behavior, so they called the police. As a brave wizard, Shawn refused to give up, and ran into a 'magic tower' (skyscraper) to escape... ")
         elif who == '3':
-            print('You chose Arthur J. Tullis!')
-            Introduction.expo('Arthur', 'He like to fuck shit up')
+            print('You chose Roslin Ringlead')
+            Introduction.expo('Roslin', 'Roslin was very charismatic, so when it came to gaining followers, she was a natural. First she gained followers on social media, then with some wise words and hard work, she got people to worship her as a full on goddess. One day she decided to have a "ritual", where her followers would gather, eat, drink and stop breathing. The plan was a simple classic, poisoned punch, steal their wallets then move to maine. If only the arsenic didnt fall out her pocket during the opening speech.... '')
         elif who == '4':
             print('You chose Don Jonas!')
-            Introduction.expo('Don', 'He like to fuck shit up')
+            Introduction.expo('Don', "He liked to fuck shit up.  People don't like that. He ran away")
 
 class Game(object):
     def play(self):
