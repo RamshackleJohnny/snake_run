@@ -1,0 +1,8 @@
+Files
+main: Contains the engine that randomizes rooms, as well as the system that keeps score
+rooms: Contains list of classes that function as rooms, imports to main
+Characters: Contains various characters, changes backstory(intro) and ending, imports to main
+
+Characters:
+Lists Characters, with descriptions
+Player picks character, alters game
