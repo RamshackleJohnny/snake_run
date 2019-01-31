@@ -58,8 +58,10 @@ class Introduction(object):
                     if punch == 'punch':
                         print("The test dummys head falls off")
                         print("Nice work!")
+                        input('> Press enter to end training, and start the game')
                     else:
-                        print ("Man you suck at this")
+                        print ("Man you suck at this, try again")
+                        Introduction.tutorial('')
         Thread(target = train).start()
         punch = input("Try it: ")
 
