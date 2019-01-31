@@ -1,7 +1,6 @@
 #imports
 import time
 from threading import Thread
-from characters import Characters
 
 # Engine Parts
 class Characters(object):
