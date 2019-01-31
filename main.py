@@ -39,7 +39,7 @@ class Introduction(object):
         print('\n Have you played before? \n Y/N')
         tut = input('> ')
         if tut == 'Y':
-            Introduction.running('')
+            Engine.running('')
         else:
             Introduction.tutorial('')
     def tutorial(self):
