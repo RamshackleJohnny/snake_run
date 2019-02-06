@@ -255,7 +255,7 @@ class Bosses(object):
         print("Jump or duck?")
         ah = None
         def satan():
-                    time.sleep(5)
+                    time.sleep(4)
                     if ah == 'jump':
                         print("You jump as high as you can, but your clothes catch fire")
                         print("The fire consumes you, but you aren't dead")
