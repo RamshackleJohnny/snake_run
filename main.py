@@ -251,7 +251,8 @@ class Introduction(object):
 class Bosses(object):
     def cult_boss(speed):
         print("A large creature of fire springs from the center of the pentagram")
-        print("He swings shoots a fireball in you direction!")
+        print("He's about 30 feet tall, and made of red and orange flames")
+        print("He shoots a fireball in you direction!")
         print("Jump or duck?")
         ah = None
         def satan():
