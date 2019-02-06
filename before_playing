@@ -1,0 +1,3 @@
+Before playing, run 
+
+python3 -m pip install -U pygame --user
