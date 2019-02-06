@@ -55,6 +55,14 @@ class Game(object):
                 time.sleep(5)
                 print("You no longer feel any rush to do anything. Take it easy")
                 Game.play(10)
+            elif paint == 'fire':
+                pygame.mixer.music.load('burn.mp3')
+                print("You paint a scrawny man with blue hair and black eyes on the wall")
+                print("Is it me, or is this room getting really hot?")
+                pygame.mixer.music.play(1)
+                time.sleep(5)
+                print("You walk out of the room, and nearly trip over a flamethrower")
+                Game.play(4)
             else:
                 print(f'You paint {paint} on the wall')
                 print("You hear footsteps, time to run!")
