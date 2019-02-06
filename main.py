@@ -28,7 +28,7 @@ class Characters(object):
             Introduction.expo('Don', "He liked to fuck shit up.  People don't like that. He ran away")
 
 class Game(object):
-    def play(score):
+    def play(speed):
         score = 0
         yourroom = random.randint(1, 3)
         print(yourroom)
@@ -44,9 +44,9 @@ class Game(object):
                 print("You paint a large red 'X' on the wall")
                 print('You feel stronger than ever before')
                 pygame.mixer.music.play(1)
-                time.sleep(5)
-                print("You're now egar to continue your run")
-                Game.play(0)
+                time.sleep(3)
+                print("Things are about to get crazy, you can feel it")
+                Game.play(3)
             elif paint == '2D':
                 pygame.mixer.music.load('slew.mp3')
                 print("You paint a scrawny man with blue hair and black eyes on the wall")
@@ -54,7 +54,15 @@ class Game(object):
                 pygame.mixer.music.play(1)
                 time.sleep(5)
                 print("You no longer feel any rush to do anything. Take it easy")
-                Game.play(0)
+                Game.play(10)
+            elif paint == 'fire':
+                pygame.mixer.music.load('burn.mp3')
+                print("You paint a scrawny man with blue hair and black eyes on the wall")
+                print("Is it me, or is this room getting really hot?")
+                pygame.mixer.music.play(1)
+                time.sleep(5)
+                print("You walk out of the room, and nearly trip over a flamethrower")
+                Game.play(4)
             else:
                 print(f'You paint {paint} on the wall')
                 print("You hear footsteps, time to run!")
@@ -65,12 +73,12 @@ class Game(object):
                 print("You run to the edge of the building and see a building close by, jump to it!")
                 jump = None
                 def top():
-                            time.sleep(5)
+                            time.sleep(speed)
                             if jump == 'jump':
                                 print("You jump to the next roof")
                                 print("You land safely!")
                                 print("You run through the first door you see")
-                                Game.play(1)
+                                Game.play(speed)
                             else:
                                 print ("He catches you, and snaps you neck")
                                 Game.death(1)
@@ -79,13 +87,13 @@ class Game(object):
         elif yourroom == 3:
                  print("You open a door and see a large man blocking you path")
                  print("Punch him!")
-                 jump = None
+                 punch = None
                  def pawnch():
-                             time.sleep(5)
+                             time.sleep(speed)
                              if punch == 'punch':
                                  print("He drops to the floor")
                                  print("Back to running!")
-                                 Game.play(1)
+                                 Game.play(speed)
                              else:
                                  print ("He knocks you out with one punch")
                                  Game.death('')
@@ -96,11 +104,11 @@ class Game(object):
                  print("Punch him!")
                  jump = None
                  def punch():
-                             time.sleep(5)
+                             time.sleep(speed)
                              if punch == 'punch':
                                  print("He drops to the floor")
                                  print("Back to running!")
-                                 Game.play(1)
+                                 Game.play(speed)
                              else:
                                  print ("He knocks you out with one punch")
                                  Game.death('')
@@ -125,7 +133,7 @@ class Introduction(object):
         print('\n Have you played before? \n Y/N')
         tut = input('> ')
         if tut == 'Y':
-            Game.play(0)
+            Game.play(5)
         else:
             Introduction.tutorial('')
     def tutorial(Room):
@@ -146,7 +154,7 @@ class Introduction(object):
                         print("The test dummy's head falls off")
                         print("Nice work!")
                         input('> Press enter to end training, and start the game')
-                        Game.play(0)
+                        Game.play(5)
                     else:
                         print ("Man you suck at this, try again")
                         Introduction.tutorial('')
