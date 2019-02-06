@@ -30,10 +30,11 @@ class Characters(object):
 class Game(object):
     def play(speed):
         score = 0
-        yourroom = random.randint(1, 3)
-        print(yourroom)
-        print(f'{score}')
-        time.sleep(1)
+        yourroom = random.randint(1, 8)
+        time.sleep(2)
+        print('\n')
+        print('\n')
+        print('\n')
         if yourroom == 1:
             print("You run through a door and enter a room with all white walls")
             print("There's multiple cans of spraypaint on the ground, and the room is silent")
@@ -46,7 +47,33 @@ class Game(object):
                 pygame.mixer.music.play(1)
                 time.sleep(3)
                 print("Things are about to get crazy, you can feel it")
-                Game.play(3)
+                print("You hear chanting in the next room over")
+                input("> Press enter when you've prepared yourself")
+                print("You enter a room full of figures in white hoods")
+                print("All eyes are immediately set on you")
+                print("Run, or fight?")
+                calt = None
+                def cult():
+                            time.sleep(speed)
+                            if calt == 'run':
+                                print("In total panic, run past them and tword the exit")
+                                print("You feel a strange force push you out the door")
+                                print("You're back at the entrance to the building that started all this'")
+                                print("You hear screaming in the distance, directed at you.'")
+                                print("Here we go again!'")
+                                time.sleep(5)
+                                Game.play(speed)
+                            elif calt == 'fight':
+                                print("There's about 10, you're sure you can take them")
+                                print("As you throw your first punch, you notice a pentagram in the center of the room")
+                                print("It's beginning to glow")
+                                input("> Press enter to begin boss fight!")
+                                Bosses.cult_boss(3)
+                            else:
+                                print ("A cult member approches you, and stabs you in the chest")
+                                Game.death(1)
+                Thread(target = cult).start()
+                calt = input("?: ")
             elif paint == '2D':
                 pygame.mixer.music.load('slew.mp3')
                 print("You paint a scrawny man with blue hair and black eyes on the wall")
@@ -62,11 +89,11 @@ class Game(object):
                 pygame.mixer.music.play(1)
                 time.sleep(5)
                 print("You walk out of the room, and nearly trip over a flamethrower")
-                Game.play(4)
+                Bosses.flames(4)
             else:
                 print(f'You paint {paint} on the wall')
                 print("You hear footsteps, time to run!")
-                Game.play(1)
+                Game.play(speed)
         elif yourroom == 2:
                 print("You open a door and arrive on the roof of the building")
                 print("You hear footsteps behind you, better find a way out!")
@@ -80,7 +107,7 @@ class Game(object):
                                 print("You run through the first door you see")
                                 Game.play(speed)
                             else:
-                                print ("He catches you, and snaps you neck")
+                                print ("Some catches you, and throws you off the building")
                                 Game.death(1)
                 Thread(target = top).start()
                 jump = input("Go: ")
@@ -100,30 +127,88 @@ class Game(object):
                  Thread(target = pawnch).start()
                  punch = input("Go: ")
         elif yourroom == 4:
-                 print("You open a door and see a large man blocking you path")
-                 print("Punch him!")
-                 jump = None
-                 def punch():
+                 print("You run through an open doorway, and the roof starts caving in!")
+                 print("Run away!")
+                 run = None
+                 def ran():
                              time.sleep(speed)
-                             if punch == 'punch':
-                                 print("He drops to the floor")
+                             if run == 'run':
+                                 print("You run through another open and escape the room")
+                                 Game.play(speed)
+                             else:
+                                 print ("The roof falls on your head")
+                                 Game.death('')
+                 Thread(target = ran).start()
+                 run = input("Go: ")
+        elif yourroom == 5:
+                 print("You kick down a door, and someone immeditly jumps at you")
+                 print("Duck!")
+                 duck = None
+                 def dawk():
+                             time.sleep(speed)
+                             if duck == 'duck':
+                                 print("Their punch misses!")
                                  print("Back to running!")
                                  Game.play(speed)
                              else:
-                                 print ("He knocks you out with one punch")
+                                 print ("Everything fades to black as you pass out, and never wake up")
                                  Game.death('')
-                 Thread(target = top).start()
-                 jump = input("Go: ")
+                 Thread(target = dawk).start()
+                 duck = input("Duck: ")
+        elif yourroom == 6:
+            print('\n')
+            print("You run past a man with in a white robe")
+            print("He's got a large red 'X' painted on his hand")
+            print('Stange....')
+            time.sleep(10)
+            Game.play(speed)
+        elif yourroom == 7:
+            print("You run into a room and a man charges you")
+            print("He's wearing headphones, steal them, or keep running?")
+            ah = None
+            def phones():
+                        time.sleep(5)
+                        if ah == 'steal':
+                            print('\n')
+                            print("You attempt to steal his headphones, but drop them")
+                            print("As you keep running, you can quietly hear that he was listening to 'Clint Eastwood' by Gorillaz")
+                            print("That's cool I guess")
+                            time.sleep(3)
+                            Game.play(speed)
+                        elif ah == 'run':
+                            print('\n')
+                            print("You keep running, and run right past him")
+                            print('Smart move')
+                            Game.play(speed)
+                        else:
+                            print ("He tackles you and beast you to death")
+                            Game.death('')
+            Thread(target = phones).start()
+            ah = input("Run?: ")
+        elif yourroom == 8:
+            print("You enter a room with a large dog in the middle")
+            print("The dog is sleeping, sneak around him")
+            def sneak():
+                time.sleep(speed)
+                if sneak == 'sneak':
+                    print('\n')
+                    print("You tiptoe around the dog and leave the room")
+                    print("Back to running!")
+                    Game.play(speed)
+                else:
+                    print ("The dog wakes up and quickly rips you to shreds")
+                    Game.death('')
+                Thread(target = sneak).start()
+                punch = input("Sneak: ")
 
-#Insert random room selection here
     def death(score):
-        print(f"Nice, you scored {score} points!")
+        print(f"You died, better luck next time!")
 # Intro
 class Introduction(object):
     def __init__(self):
         pass
     def startup(self):
-        print("Welcome to Snake Cave!")
+        print("Welcome to Runner's fury!")
         print("To start the game, please choose your character")
         Characters.name('')
     def expo(name, backstory):
@@ -141,8 +226,9 @@ class Introduction(object):
         print("You're running away, but you're path isn't all too clear")
         print('You have limited lime to type the action you need to take to continue running')
         print("For example, if you're told that there is a low hanging object ahead, you may want to type 'duck'")
-        print("Incase you can't tell, your also not a pacafist, so you may have to fight too, with words like 'kick', 'punch', and 'jab'")
+        print("In case you can't tell, your also not a pacafist, so you may have to fight too, with words like 'kick', 'punch', and 'jab'")
         print("Press enter after every action, don't press it more than once. Please.")
+        print("Don't type if you aren't prompted to do so, or you'll break everything")
         print("When you stop running, you stop living, so stay on the run!")
         print("\n We set up a fake room for you to test you skills in. All rooms will go something like this...")
         input('> Press enter to being training')
@@ -162,10 +248,55 @@ class Introduction(object):
         punch = input("Try it: ")
 
 
+class Bosses(object):
+    def cult_boss(speed):
+        print("A large creature of fire springs from the center of the pentagram")
+        print("He swings shoots a fireball in you direction!")
+        print("Jump or duck?")
+        ah = None
+        def satan():
+                    time.sleep(5)
+                    if ah == 'jump':
+                        print("You jump as high as you can, but your clothes catch fire")
+                        print("The fire consumes you, but you aren't dead")
+                        print("You're back at the entrance to the building that started all this")
+                        print("You hear screaming in the distance, directed at you.")
+                        print("Here we go again!")
+                        time.sleep(10)
+                        Game.play(4)
+                    elif ah == 'duck':
+                        print("You lost a little hair, but you're relatively ok")
+                        print("The fireball seems to have killed a few cult members")
+                        Bosses.cult_defeat(3)
+                    else:
+                        print ("Burning hurts a lot more than you thought it would")
+                        Game.death('')
+        Thread(target = satan).start()
+        ah = input("Oh shit: ")
 
-#Insert next room here
+    def cult_defeat(speed):
+        print("You see a fire alarm on the other side of the room!")
+        print("Dash to it!")
+        woter = None
+        def water():
+                    time.sleep(3)
+                    if woter == 'dash':
+                        print("You pull the alarm")
+                        print("The beast screaches as the fire begins to go out")
+                        print("It then begins to grow agin")
+                        print("You exit the building, and the entire building is consumed by flames")
+                        print("At least you're not being chased anymore!")
+                        print('You win!')
+                        input('> Press enter to end game')
+                    else:
+                        print ("The moster catches you, and you feel pain not just on your flesh, but in your soul")
+                        Game.death('')
+        Thread(target = water).start()
+        woter = input("QUICKLY: ")
 
-
+    def flames(speed):
+        input('Press enter to pick it up')
+        print("You've arrived at an incomplete section of the game, sorry!")
 # Stuff for running
 pygame.mixer.init()
 Introduction.startup('')
