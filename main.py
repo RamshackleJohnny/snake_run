@@ -1,8 +1,11 @@
 #imports
 import time
+import random
+import pygame
 from threading import Thread
 
-score = 0
+
+
 # Engine Parts
 class Characters(object):
     def name(self):
@@ -19,16 +22,94 @@ class Characters(object):
             Introduction.expo('Shawn', "Shawn thinks he is a wizard. He's always experimenting with 'magic'. Recently, he's been kidnapping people's cats in an attempt to turn them into his new human friends. The neighborhood cat ladies aren't very happy with his recent behavior, so they called the police. As a brave wizard, Shawn refused to give up, and ran into a 'magic tower' (skyscraper) to escape... ")
         elif who == '3':
             print('You chose Roslin Ringlead')
-            Introduction.expo('Roslin', 'Roslin was very charismatic, so when it came to gaining followers, she was a natural. First she gained followers on social media, then with some wise words and hard work, she got people to worship her as a full on goddess. One day she decided to have a "ritual", where her followers would gather, eat, drink and stop breathing. The plan was a simple classic, poisoned punch, steal their wallets then move to maine. If only the arsenic didnt fall out her pocket during the opening speech.... '')
+            Introduction.expo('Roslin', 'Roslin was very charismatic, so when it came to gaining followers, she was a natural. First she gained followers on social media, then with some wise words and hard work, she got people to worship her as a full on goddess. One day she decided to have a "ritual", where her followers would gather, eat, drink and stop breathing. The plan was a simple classic, poisoned punch, steal their wallets then move to maine. If only the arsenic didnt fall out her pocket during the opening speech.... ')
         elif who == '4':
             print('You chose Don Jonas!')
             Introduction.expo('Don', "He liked to fuck shit up.  People don't like that. He ran away")
 
 class Game(object):
-    def play(self):
+    def play(score):
+        score = 0
+        yourroom = random.randint(1, 3)
+        print(yourroom)
+        print(f'{score}')
+        time.sleep(1)
+        if yourroom == 1:
+            print("You run through a door and enter a room with all white walls")
+            print("There's multiple cans of spraypaint on the ground, and the room is silent")
+            print("Anything you want to draw while you catch your breath?")
+            paint = input("Paint: ")
+            if paint == 'X':
+                pygame.mixer.music.load('X.mp3')
+                print("You paint a large red 'X' on the wall")
+                print('You feel stronger than ever before')
+                pygame.mixer.music.play(1)
+                time.sleep(5)
+                print("You're now egar to continue your run")
+                Game.play(0)
+            elif paint == '2D':
+                pygame.mixer.music.load('slew.mp3')
+                print("You paint a scrawny man with blue hair and black eyes on the wall")
+                print('How relaxing')
+                pygame.mixer.music.play(1)
+                time.sleep(5)
+                print("You no longer feel any rush to do anything. Take it easy")
+                Game.play(0)
+            else:
+                print(f'You paint {paint} on the wall')
+                print("You hear footsteps, time to run!")
+                Game.play(1)
+        elif yourroom == 2:
+                print("You open a door and arrive on the roof of the building")
+                print("You hear footsteps behind you, better find a way out!")
+                print("You run to the edge of the building and see a building close by, jump to it!")
+                jump = None
+                def top():
+                            time.sleep(5)
+                            if jump == 'jump':
+                                print("You jump to the next roof")
+                                print("You land safely!")
+                                print("You run through the first door you see")
+                                Game.play(1)
+                            else:
+                                print ("He catches you, and snaps you neck")
+                                Game.death(1)
+                Thread(target = top).start()
+                jump = input("Go: ")
+        elif yourroom == 3:
+                 print("You open a door and see a large man blocking you path")
+                 print("Punch him!")
+                 jump = None
+                 def pawnch():
+                             time.sleep(5)
+                             if punch == 'punch':
+                                 print("He drops to the floor")
+                                 print("Back to running!")
+                                 Game.play(1)
+                             else:
+                                 print ("He knocks you out with one punch")
+                                 Game.death('')
+                 Thread(target = pawnch).start()
+                 punch = input("Go: ")
+        elif yourroom == 4:
+                 print("You open a door and see a large man blocking you path")
+                 print("Punch him!")
+                 jump = None
+                 def punch():
+                             time.sleep(5)
+                             if punch == 'punch':
+                                 print("He drops to the floor")
+                                 print("Back to running!")
+                                 Game.play(1)
+                             else:
+                                 print ("He knocks you out with one punch")
+                                 Game.death('')
+                 Thread(target = top).start()
+                 jump = input("Go: ")
+
 #Insert random room selection here
-    def death(self):
-        print(f"Nice, you scored {score}")
+    def death(score):
+        print(f"Nice, you scored {score} points!")
 # Intro
 class Introduction(object):
     def __init__(self):
@@ -44,15 +125,16 @@ class Introduction(object):
         print('\n Have you played before? \n Y/N')
         tut = input('> ')
         if tut == 'Y':
-            Game.play('')
+            Game.play(0)
         else:
             Introduction.tutorial('')
-    def tutorial(self):
+    def tutorial(Room):
         print('The premise of this game is pretty simple')
         print("You're running away, but you're path isn't all too clear")
         print('You have limited lime to type the action you need to take to continue running')
         print("For example, if you're told that there is a low hanging object ahead, you may want to type 'duck'")
         print("Incase you can't tell, your also not a pacafist, so you may have to fight too, with words like 'kick', 'punch', and 'jab'")
+        print("Press enter after every action, don't press it more than once. Please.")
         print("When you stop running, you stop living, so stay on the run!")
         print("\n We set up a fake room for you to test you skills in. All rooms will go something like this...")
         input('> Press enter to being training')
@@ -64,6 +146,7 @@ class Introduction(object):
                         print("The test dummy's head falls off")
                         print("Nice work!")
                         input('> Press enter to end training, and start the game')
+                        Game.play(0)
                     else:
                         print ("Man you suck at this, try again")
                         Introduction.tutorial('')
@@ -72,53 +155,9 @@ class Introduction(object):
 
 
 
-# Rooms
-class Room(object):
-    def points(self):
-        score = score + 1
-
-class Stairs(Room):
-    print("You see a flight of stairs and begin to run up them")
-    print("A large man in standing in your way, but there seems to be space to pass him")
-    print("Dodge him!")
-    def step():
-                time.sleep(5)
-                if dodge == 'dodge':
-                    print("You jump to the side and pass him!")
-                    print("Nice!")
-                else:
-                    print ("He catches you, and snaps you neck")
-                    Game.death('')
-    Thread(target = step).start()
-    dodge = input("Go: ")
-    print("Now kick him down the stairs!")
-    def steps():
-                time.sleep(5)
-                if kick == 'kick':
-                    print("He slides face first down the stairs")
-                    print("That's gotta hurt!")
-                    print("You reach the top of the stairs")
-                else:
-                    print ("He catches you, and snaps you neck")
-                    Game.death('')
-    Thread(target = steps).start()
-    kick = input("Go: ")
 #Insert next room here
-class Roof(Room):
-    print("You open a door and arrive on the roof of the building")
-    print("You hear footsteps behind you, better find a way out!")
-    print("You run to the edge of the building and see a building close by, jump to it!")
-    def top():
-                time.sleep(5)
-                if jump == 'jump':
-                    print("He slides face first down the stairs")
-                    print("That's gotta hurt!")
-                    print("You reach the top of the stairs")
-                else:
-                    print ("He catches you, and snaps you neck")
-                    Game.death('')
-    Thread(target = top).start()
-    jump = input("Go: ")
+
 
 # Stuff for running
+pygame.mixer.init()
 Introduction.startup('')
