@@ -30,7 +30,7 @@ class Characters(object):
 class Game(object):
     def play(speed):
         score = 0
-        yourroom = random.randint(1, 8)
+        yourroom = random.randint(1, 7)
         time.sleep(2)
         print('\n')
         print('\n')
@@ -185,21 +185,22 @@ class Game(object):
                             Game.death('')
             Thread(target = phones).start()
             ah = input("Run?: ")
-        elif yourroom == 8:
-            print("You enter a room with a large dog in the middle")
-            print("The dog is sleeping, sneak around him")
-            def sneak():
-                time.sleep(speed)
-                if sneak == 'sneak':
-                    print('\n')
-                    print("You tiptoe around the dog and leave the room")
-                    print("Back to running!")
-                    Game.play(speed)
-                else:
-                    print ("The dog wakes up and quickly rips you to shreds")
-                    Game.death('')
-                Thread(target = sneak).start()
-                punch = input("Sneak: ")
+#        elif yourroom == 8:
+#            print("You enter a room with a large dog in the middle")
+#            print("The dog is sleeping, sneak around him")
+#            sneak = None
+#            def sneak():
+#                time.sleep(speed)
+#                if sneak == 'sneak':
+# is broke                   print('\n')
+#                    print("You tiptoe around the dog and leave the room")
+#                    print("Back to running!")
+#                    Game.play(speed)
+#                else:
+#                    print ("The dog wakes up and quickly rips you to shreds")
+#                    Game.death('')
+#            Thread(target = sneak).start()
+#            punch = input("Sneak: ")
 
     def death(score):
         print(f"You died, better luck next time!")
